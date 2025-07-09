@@ -35,13 +35,13 @@ public class DoctorController {
 
     @PostMapping
     public ResponseEntity<Doctor> createDoctor(@RequestBody Doctor doctorRequest) {
-        Doctor pacient = this.doctorService.createDoctor(doctorRequest);
+        Doctor patient = this.doctorService.createDoctor(doctorRequest);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id_doctor}")
-                .buildAndExpand(pacient.getId_doctor()).toUri();
+                .buildAndExpand(patient.getId_doctor()).toUri();
 
         return ResponseEntity
                 .created(uri)
-                .body(pacient);
+                .body(patient);
     }
     @PutMapping("/{id_doctor}")
     public ResponseEntity<Doctor> updateDoctor(@PathVariable int id_doctor, @RequestBody Doctor doctorUpdated) {

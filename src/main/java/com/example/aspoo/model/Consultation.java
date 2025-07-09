@@ -1,5 +1,7 @@
 package com.example.aspoo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import javax.print.Doc;
@@ -14,17 +16,21 @@ public class Consultation {
     @Column(name = "id_consultation", nullable = false, unique = true)
     private Integer id_consultation;
 
-    @OneToOne
-    @JoinColumn(name = "id_remedy", referencedColumnName = "id_remedy")
-    private Remedy remedy;
+    @ManyToOne
+    @JoinColumn(name = "id_doctor")
+    @JsonBackReference(value = "doctor-consultations")
+    private Doctor doctor;
 
-    @OneToOne
-    @JoinColumn(name = "id_patient", referencedColumnName = "id_patient")
+    @ManyToOne
+    @JoinColumn(name = "id_patient")
+    @JsonBackReference(value = "patient-consultations")
     private Patient patient;
 
     @ManyToOne
-    @JoinColumn(name = "id_doctor", referencedColumnName = "id_doctor")
-    private Doctor doctor;
+    @JoinColumn(name = "id_remedy")
+    @JsonBackReference(value = "remedy-consultations")
+    private Remedy remedy;
+
 
     private Double finalPrice;
 

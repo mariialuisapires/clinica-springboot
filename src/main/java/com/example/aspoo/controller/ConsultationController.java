@@ -2,6 +2,7 @@ package com.example.aspoo.controller;
 
 
 
+import com.example.aspoo.dto.ConsultationDTO;
 import com.example.aspoo.model.Consultation;
 import com.example.aspoo.model.Remedy;
 import com.example.aspoo.services.ConsultationService;
@@ -33,11 +34,7 @@ public class ConsultationController {
                 .body(this.consultationService.listAllConsultation());
     }
 
-    @GetMapping("/{id_consultation}")
-    public ResponseEntity<Consultation> listById (@PathVariable int id_consultation) {
-        return ResponseEntity
-                .ok(this.consultationService.listById(id_consultation));
-    }
+
 
     @PostMapping
     public ResponseEntity<Consultation> createConsultation(@RequestBody Consultation consultationRequest) {

@@ -1,6 +1,10 @@
 package com.example.aspoo.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Remedies")
@@ -9,9 +13,13 @@ public class Remedy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_remedy", nullable = false)
     private Integer id_remedy;
-
     private String type;
     private double price;
+
+    @OneToMany(mappedBy = "remedy")
+    @JsonManagedReference(value = "remedy-consultations")
+    private List<Consultation> consultations = new ArrayList<>();
+
 
 
 

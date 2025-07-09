@@ -1,8 +1,10 @@
 package com.example.aspoo.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +20,8 @@ public class Doctor {
     private String email;
     private String specialty ;
     @OneToMany(mappedBy = "doctor")
-    private List<Consultation> consultations;
+    @JsonManagedReference(value = "doctor-consultations")
+    private List<Consultation> consultations = new ArrayList<>();
 
     public Doctor() {}
 
